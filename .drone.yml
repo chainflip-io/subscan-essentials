@@ -51,7 +51,7 @@ steps:
 # Config
 trigger:
   event:
-    - build_trigger
+    - customß
 
 image_pull_secrets:
   - dockerconfigjson
