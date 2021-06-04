@@ -50,8 +50,6 @@ steps:
 
 # Config
 trigger:
-  branch:
-    - master
   event:
     - push
 
@@ -60,7 +58,6 @@ image_pull_secrets:
 
 node_selector:
   type: ci
-
 tolerations:
   - key: "workloadKind"
     operator: "Equal"
