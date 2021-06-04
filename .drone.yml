@@ -1,0 +1,67 @@
+kind: secret
+name: docker_username
+get:
+  path: repo-secret
+  name: docker_username
+---
+kind: secret
+name: docker_password
+get:
+  path: repo-secret
+  name: docker_password
+---
+kind: secret
+name: dockerconfigjson
+get:
+  path: dockerconfigjson
+  name: .dockerconfigjson
+---
+kind: pipeline
+type: kubernetes
+name: subscan-essentials
+
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<< main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+# Merge to master build and publish
+steps:
+  - name: subscan-api
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: ghcr.io/chainflip-io/subscan-essentials/subscan-api
+      dockerfile: Dockerfile
+      registry: ghcr.io
+      tags: latest
+      cache_from: ghcr.io/chainflip-io/subscan-essentials/subscan-api:latest
+  - name: subscan-ui
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: ghcr.io/chainflip-io/subscan-essentials/subscan-ui
+      dockerfile: ui/Dockerfile
+      registry: ghcr.io
+      tags: latest
+      cache_from: ghcr.io/chainflip-io/subscan-essentials/subscan-ui:latest
+
+# Config
+trigger:
+  branch:
+    - main
+  event:
+    - push
+
+image_pull_secrets:
+  - dockerconfigjson
+
+node_selector:
+  type: ci
+
+tolerations:
+  - key: "workloadKind"
+    operator: "Equal"
+    value: "ci"
