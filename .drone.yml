@@ -46,6 +46,7 @@ steps:
       dockerfile: ui/Dockerfile
       registry: ghcr.io
       tags: latest
+      context: ui
       cache_from: ghcr.io/chainflip-io/subscan-essentials/subscan-ui:latest
 
 # Config
