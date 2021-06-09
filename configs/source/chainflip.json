@@ -1,0 +1,19 @@
+{
+  "EpochIndex": "u32",
+  "ValidatorSize": "u32",
+  "VoteCount": "u32",
+  "TokenAmount": "u128",
+  "Nonce": "u64",
+  "Duration": "u64",
+  "AccountInfo": "AccountInfoWithDualRefCount",
+  "Address": "MultiAddress",
+  "LookupSource": "MultiAddress",
+  "Amount": "TokenAmount",
+  "AuctionError": {
+    "_enum": [
+      "BondIsZero",
+      "Empty",
+      "MinValidatorSize"
+    ]
+  }
+}
