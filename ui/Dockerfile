@@ -5,6 +5,7 @@ COPY package.json /app
 COPY yarn.lock /app
 RUN yarn install
 ADD . /app
+ENV NODE_ENV="production"
 RUN yarn build
 
 FROM nginx:latest
