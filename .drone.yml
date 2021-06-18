@@ -37,6 +37,8 @@ steps:
       cache_from: ghcr.io/chainflip-io/subscan-essentials/subscan-api:latest
   - name: subscan-ui
     image: plugins/docker
+    environment:
+      API_URL: https://api.subscan.chainflip.xyz
     settings:
       username:
         from_secret: docker_username
@@ -44,6 +46,8 @@ steps:
         from_secret: docker_password
       repo: ghcr.io/chainflip-io/subscan-essentials/subscan-ui
       dockerfile: ui/Dockerfile
+      build_args_from_env:
+        - API_URL
       registry: ghcr.io
       tags: latest
       context: ui
