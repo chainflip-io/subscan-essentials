@@ -53,12 +53,12 @@ export default {
 
   axios: {
     proxy: process.env.NODE_ENV !== 'production',
-    browserBaseURL: process.env.NODE_ENV !== 'production' ? "" : "http://127.0.0.1:4399"
+    browserBaseURL: process.env.NODE_ENV !== 'production' ? "" : "http://subscan.chainflip.xyz"
   },
 
   proxy: {
     "/api": {
-      target: "http://127.0.0.1:4399",
+      target: "http://subscan.chainflip.xyz",
       secure: false,
       changeOrigin: true,
       pathRewrite: {
