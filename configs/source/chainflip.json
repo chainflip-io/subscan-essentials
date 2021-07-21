@@ -1,18 +1,11 @@
 {
-  "EpochIndex": "u32",
-  "ValidatorSize": "u32",
-  "VoteCount": "u32",
-  "TokenAmount": "u128",
-  "Nonce": "u64",
-  "Duration": "(u64,u32)",
-  "AccountInfo": {
+  "AccountInfo":  {
     "nonce": "Index",
     "consumers": "RefCount",
     "providers": "RefCount",
     "data": "()"
   },
   "Address": "MultiAddress",
-  "LookupSource": "MultiAddress",
   "Amount": "TokenAmount",
   "AuctionError": {
     "_enum": [
@@ -20,5 +13,46 @@
       "Empty",
       "MinValidatorSize"
     ]
-  }
+  },
+  "AuctionIndex": "u64",
+  "AuctionPhase": {
+    "_enum": {
+      "WaitingForBids": "(Vec<ValidatorId>, Amount)",
+      "BidsTaken": "(Vec<(ValidatorId, Amount)>)",
+      "WinnersSelected": "(Vec<ValidatorId>, Amount)"
+    }
+  },
+  "AuctionRange": "(u32,u32)",
+  "CallHash": "[u8;32]",
+  "ClaimDetailsFor": {
+    "amount": "FlipBalance",
+    "nonce": "Nonce",
+    "address": "EthereumAddress",
+    "expiry": "Duration",
+    "signature": "Option<Signature>" 
+  },
+  "Duration": "(u64,u32)",
+  "EpochIndex": "u32",
+  "EthereumAddress": "[u8;20]",
+  "EthTransactionHash": "[u8;32]",
+  "FlipAccount": {
+    "stake": "FlipBalance",
+    "validator_bond": "FlipBalance"
+  },
+  "FlipBalance": "u128",
+  "ImbalanceSource": {
+    "_enum": [
+      "External",
+      "Account(AccountId)",
+      "Emissions"
+    ]
+  },
+  "LookupSource": "MultiAddress",
+  "Nonce": "u64",
+  "Retired": "bool",
+  "Signature": "H256",
+  "TokenAmount": "u128",
+  "ValidatorId": "AccountId",
+  "ValidatorSize": "u32",
+  "VoteCount": "u32"
 }
